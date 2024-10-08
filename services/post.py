@@ -7,6 +7,6 @@ def fetch_all_posts():
     return posts
 def fetch_post_by_id(post_id):
     client, db = get_db_connection()
-    post = db['posts'].find_one({"id": post_id})
+    post = db['posts'].find_one({"post_id": post_id})
     client.close()
     return post

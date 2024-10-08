@@ -9,6 +9,6 @@ def fetch_all_users():
 
 def fetch_user_by_id(user_id):
     client, db = get_db_connection()
-    user = list(db['users'].find_one({"id": user_id}))
+    user = db['users'].find_one({"id": user_id})
     client.close()
     return user

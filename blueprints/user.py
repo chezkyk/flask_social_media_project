@@ -6,13 +6,18 @@ user_bp = Blueprint('user', __name__, url_prefix='/api/user')
 @user_bp.route('', methods=['GET'])
 def get_all_users():
     users = fetch_all_users()
-    return jsonify(users), 200
+    serialized_users = [serialize_user(user) for user in users]
+    return jsonify(serialized_users), 200
 
 @user_bp.route('/<int:id>', methods=['GET'])
-def get_user_by_id_route(id):
+def get_user_by_id(id):
     user = fetch_user_by_id(id)
-    if user:
-        return jsonify(user), 200
+    serialized_user = serialize_user(user)
+    if serialized_user:
+        return jsonify(serialized_user), 200
     else:
         return jsonify({"message": "User not found"}), 404
 
+def serialize_user(user):
+    user['_id'] = str(user['_id'])
+    return user
