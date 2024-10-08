@@ -33,9 +33,9 @@ def insert_users(collection_name, api_url):
         except requests.exceptions.ConnectionError:
             print('Failed to connect to API')
         except requests.exceptions.HTTPError as http_err:
-            print(f'HTTP error occurred: {http_err}')  # טעות בבקשה
+            print(f'HTTP error occurred: {http_err}')
         except Exception as e:
-            print(f'An error occurred: {e}')  # טעות אחרת
+            print(f'An error occurred: {e}')
     else:
         print(f"Data already exists in {collection_name} collection.")
     client.close()
