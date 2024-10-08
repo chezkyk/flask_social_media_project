@@ -1,5 +1,5 @@
 from db import get_db_connection
-from flask import requests
+import requests
 from models.user import User
 from models.geo import Geo
 from models.address import Address
@@ -8,8 +8,8 @@ from models.post import Post
 
 def insert_users(collection_name, api_url):
     client, db = get_db_connection()
-    data = db[collection_name]
-    if not data:
+    data = db[collection_name].find_one()
+    if data is None:
         try:
             response = requests.get(api_url)
             response.raise_for_status()
@@ -43,8 +43,8 @@ def insert_users(collection_name, api_url):
 
 def insert_posts(collection_name, api_url):
     client, db = get_db_connection()
-    data = db[collection_name]
-    if not data:
+    data = db[collection_name].find_one()
+    if data is None:
         try:
             response = requests.get(api_url)
             response.raise_for_status()
