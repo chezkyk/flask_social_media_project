@@ -15,6 +15,9 @@
     * user.py
   * static
   * templates
+  * tests
+    * post_service_test.py
+    * user_service_test.py
   * utils
     * import_data_api.py
   * app.py
